@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Abruzzo 2026</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Abruzzo 2026">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#111419">
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Abruzzo+2026%22%2C%22short_name%22%3A%22Abruzzo%22%2C%22display%22%3A%22standalone%22%2C%22orientation%22%3A%22portrait%22%2C%22background_color%22%3A%22%23111419%22%2C%22theme_color%22%3A%22%23C0604A%22%7D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --terra:#C0604A;--olive:#4A7A58;--gold:#C9A84C;
+    --dark:#111419;--card:#1C2028;--border:rgba(255,255,255,0.08);
+    --text:#E8E4DF;--muted:rgba(232,228,223,0.5);--radius:16px;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--dark);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+  /* HERO */
+  .hero{position:relative;height:100vh;height:100svh;min-height:580px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+  .hero-bg{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(160deg,#2c4a3e 0%,#4a7a58 30%,#7a9a6a 55%,#c8a96e 75%,#c0604a 100%)}
+  .hero-bg img{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+  .hero-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(to top,#111419 0%,rgba(17,20,25,0.55) 50%,rgba(17,20,25,0.15) 100%)}
+  .hero-content{position:relative;z-index:2;padding:0 24px 52px}
+  .hero-tag{display:inline-block;background:var(--terra);color:#fff;font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;padding:5px 12px;border-radius:4px;margin-bottom:16px}
+  .hero-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(54px,14vw,96px);font-weight:700;line-height:0.95;letter-spacing:-1px;color:#fff;margin-bottom:8px}
+  .hero-sub{font-size:13px;font-weight:300;color:var(--gold);letter-spacing:1px;margin-bottom:28px}
+  .hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+  .hero-pill{background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.18);border-radius:20px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,0.85)}
+
+  /* NAV removed */
+
+  /* DAY SECTION */
+  .day-section{padding:0 0 48px}
+
+  /* DAY HERO PHOTO */
+  .day-hero{position:relative;height:260px;overflow:hidden}
+  .day-hero-bg{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%}
+  .day-hero-bg img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center}
+  .day-hero-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(to top,var(--dark) 0%,rgba(17,20,25,0.5) 60%,rgba(17,20,25,0.1) 100%)}
+  .day-section{scroll-margin-top:8px}
+  .day-hero-label{position:absolute;bottom:0;left:0;right:0;padding:20px 20px 16px}
+  .day-number{display:inline-flex;align-items:center;gap:10px;margin-bottom:6px}
+  .day-num-badge{background:var(--terra);color:#fff;font-size:11px;font-weight:600;letter-spacing:1.5px;padding:3px 10px;border-radius:4px}
+  .day-date{font-size:12px;color:var(--gold);font-weight:400;letter-spacing:0.5px}
+  .day-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(22px,6vw,32px);font-weight:700;color:#fff;line-height:1.15}
+
+  /* CONTENT */
+  .day-content{padding:20px 16px 0}
+  .activities{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+  .activity{display:grid;grid-template-columns:52px 1fr;gap:0 14px;align-items:start}
+  .act-time{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:5px 4px;text-align:center;line-height:1.2;margin-top:2px;display:flex;flex-direction:column;align-items:center;gap:1px}
+  .act-time-start{font-size:11px;font-weight:700;color:var(--terra)}
+  .act-time-end{font-size:9px;font-weight:400;color:var(--muted)}
+  .act-body{padding:6px 0 10px;border-bottom:1px solid var(--border)}
+  .activity:last-child .act-body{border-bottom:none}
+  .act-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px;line-height:1.3}
+  .act-title.drive{color:var(--muted);font-weight:500;font-size:13px}
+  .act-detail{font-size:12px;color:var(--muted);line-height:1.55}
+  .act-tip{margin-top:6px;background:rgba(201,168,76,0.1);border-left:2px solid var(--gold);padding:6px 10px;border-radius:0 6px 6px 0;font-size:11.5px;color:rgba(201,168,76,0.9);line-height:1.45}
+  .activity.drive-row .act-time{border-color:rgba(255,255,255,0.04);background:rgba(255,255,255,0.02)}
+  .activity.drive-row .act-body{border-bottom-style:dashed;border-bottom-color:rgba(255,255,255,0.05)}
+
+  /* MAPS LINK */
+  .maps-link{display:inline-flex;align-items:center;gap:4px;margin-top:5px;color:rgba(74,122,88,0.9);font-size:11px;font-weight:500;text-decoration:none;border:1px solid rgba(74,122,88,0.3);border-radius:5px;padding:2px 8px;transition:all 0.2s}
+  .maps-link:hover,.maps-link:active{background:rgba(74,122,88,0.15);border-color:rgba(74,122,88,0.6)}
+  .maps-link svg{width:11px;height:11px;flex-shrink:0}
+
+  /* LINKS */
+  .links{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+  .link-card{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--text);transition:all 0.2s;-webkit-tap-highlight-color:transparent}
+  .link-card:hover,.link-card:active{border-color:var(--terra);background:rgba(192,96,74,0.08)}
+  .link-icon{width:36px;height:36px;border-radius:10px;background:rgba(192,96,74,0.15);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+  .link-text{flex:1;min-width:0}
+  .link-label{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .link-url{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .link-arrow{color:var(--muted);font-size:14px;flex-shrink:0}
+
+  /* FREE DAY */
+  .free-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+  .free-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 14px}
+  .free-card-icon{font-size:24px;margin-bottom:8px}
+  .free-card-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:4px}
+  .free-card-desc{font-size:11px;color:var(--muted);line-height:1.5}
+
+  /* INTRO */
+  .intro-block{padding:24px 16px 16px}
+  .intro-title{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+  .intro-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px}
+  .intro-stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 8px;text-align:center;display:flex;flex-direction:column;gap:3px}
+  .intro-num{font-size:13px;font-weight:700;color:var(--terra);line-height:1}
+  .intro-label{font-size:9px;color:var(--muted);line-height:1.3}
+  .intro-text{font-size:12.5px;color:rgba(232,228,223,0.65);line-height:1.7;margin-bottom:4px}
+  .intro-details{border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden;background:var(--card)}
+  .intro-details[open]{border-color:rgba(192,96,74,0.3)}
+  .intro-summary{display:flex;align-items:center;justify-content:space-between;padding:13px 14px;font-size:13px;font-weight:600;color:var(--text);cursor:pointer;list-style:none;-webkit-tap-highlight-color:transparent;gap:8px}
+  .intro-summary::-webkit-details-marker{display:none}
+  .intro-details[open] .intro-summary{color:var(--terra);border-bottom:1px solid var(--border)}
+  .intro-chevron{color:var(--muted);font-size:18px;transition:transform 0.2s;flex-shrink:0}
+  .intro-details[open] .intro-chevron{transform:rotate(90deg);color:var(--terra)}
+  .intro-details .intro-text{padding:12px 14px;margin:0}
+  .intro-details .intro-text+.intro-text{padding-top:0}
+  .intro-facts-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+  .intro-fact-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:5px}
+  .ifc-icon{font-size:18px}
+  .ifc-text{font-size:11px;color:var(--muted);line-height:1.5}
+
+  /* DAY OVERVIEW GRID */
+  .overview{padding:16px 16px 8px}
+  .overview-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+  .overview-btn{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px 4px;text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:all 0.15s;text-decoration:none;display:block}
+  .overview-btn:hover,.overview-btn:active{border-color:var(--terra);background:rgba(192,96,74,0.1)}
+  .overview-day{font-size:9px;font-weight:600;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-bottom:2px}
+  .overview-date{font-size:12px;font-weight:600;color:var(--text)}
+  .overview-title{font-size:9px;color:var(--muted);margin-top:2px;line-height:1.3}
+
+  /* NEARBY */
+  .nearby-list{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+  .nearby-item{display:grid;grid-template-columns:32px 1fr auto;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 12px;text-decoration:none;color:var(--text);-webkit-tap-highlight-color:transparent;transition:all 0.15s}
+  .nearby-item:hover,.nearby-item:active{border-color:var(--olive)}
+  .nearby-dist{font-size:10px;font-weight:600;color:var(--olive);text-align:center;line-height:1.2}
+  .nearby-name{font-size:13px;font-weight:500;line-height:1.2}
+  .nearby-desc{font-size:11px;color:var(--muted);line-height:1.4;margin-top:1px}
+  .nearby-arrow{color:var(--muted);font-size:12px;flex-shrink:0}
+
+  /* SECTION LABEL */
+  .section-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;margin-top:20px}
+
+  /* CLOSING */
+  .closing{position:relative;min-height:380px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden;padding:60px 24px}
+  .closing-bg{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(160deg,#1a2a3a 0%,#2c3e50 50%,#c0604a 100%)}
+  .closing-bg img{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.4) saturate(1.2)}
+  .closing-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at center,rgba(17,20,25,0.3) 0%,rgba(17,20,25,0.75) 100%)}
+  .closing-content{position:relative;z-index:2}
+  .closing-eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+  .closing-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(36px,10vw,64px);font-weight:700;color:#fff;margin-bottom:12px;line-height:1.05}
+  .closing-sub{font-size:14px;font-style:italic;color:rgba(255,255,255,0.6);max-width:280px;margin:0 auto 28px;line-height:1.6}
+  .closing-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  .closing-chip{background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,0.8)}
+
+  .divider{height:1px;background:var(--border);margin:0 16px}
+
+  @media(min-width:640px){
+    body{display:flex;justify-content:center}
+    body>*{width:100%;max-width:480px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg" style="background:linear-gradient(175deg,#243b2e 0%,#3a6349 18%,#6a9c72 35%,#a8b87a 52%,#c9a86c 65%,#b85a42 82%,#7a2e1e 100%)"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-tag">Ferienplan 2026</span>
+    <h1 class="hero-title">Abruzzo</h1>
+    <p class="hero-sub">25. Juli — 1. August · Italia</p>
+    <div class="hero-pills">
+      <span class="hero-pill">Villa Cusano</span>
+      <span class="hero-pill">Rocca Calascio</span>
+      <span class="hero-pill">Trabocchi-Küste</span>
+      <span class="hero-pill">Lago di Scanno</span>
+      <span class="hero-pill">Arrosticini</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INTRO ════════════════════════════════════════════════════════ -->
+<div class="intro-block">
+  <div class="intro-title">Über die Abruzzen</div>
+  <div class="intro-grid">
+    <div class="intro-stat"><span class="intro-num">10.763</span><span class="intro-label">km² Fläche</span></div>
+    <div class="intro-stat"><span class="intro-num">1,27 Mio</span><span class="intro-label">Einwohner</span></div>
+    <div class="intro-stat"><span class="intro-num">2.912 m</span><span class="intro-label">Gran Sasso</span></div>
+    <div class="intro-stat"><span class="intro-num">36 %</span><span class="intro-label">Naturschutz</span></div>
+  </div>
+
+  <details class="intro-details">
+    <summary class="intro-summary"><span>🏔 Das Land zwischen Himmel und Meer</span><span class="intro-chevron">›</span></summary>
+    <p class="intro-text">Stell dir vor: Du frühstückst auf 1.500 Metern mit Blick auf schneebedeckte Gipfel — und bist mittags am Strand. In den Abruzzen ist genau das Realität. Von den höchsten Bergen des Apennins bis zur Adriaküste vergehen gerade mal 45 Minuten mit dem Auto. Der Gran Sasso (2.912 m) ist der höchste Gipfel Italiens südlich der Alpen — und hat sogar ein eigenes Hochenergielabor tief im Felsen, weil die dicke Gesteinsschicht kosmische Strahlung abschirmt. Ja, in diesem Berg steckt ein Teilchenbeschleuniger.</p>
+  </details>
+
+  <details class="intro-details">
+    <summary class="intro-summary"><span>⚔️ Geschichte: Kriege, Kaiser &amp; Erdbeben</span><span class="intro-chevron">›</span></summary>
+    <p class="intro-text">Die Abruzzen haben turbulente Vergangenheit: Römer, Normannen, Staufer, Anjou, Spanier — alle wollten hier regieren. Im Mittelalter blühte die Region unter Friedrich II. auf, der Sulmona zu einer wichtigen Stadt machte. 1703 und erneut 2009 erschütterten verheerende Erdbeben die Region — L'Aquila wurde dabei fast vollständig zerstört und wird bis heute wiederaufgebaut. Während des Zweiten Weltkriegs war der Gran Sasso Schauplatz einer der spektakulärsten Aktionen überhaupt: Mussolini wurde hier 1943 von deutschen Fallschirmjägern befreit — direkt aus dem Hotel auf dem Gipfel.</p>
+  </details>
+
+  <details class="intro-details">
+    <summary class="intro-summary"><span>👨‍🌾 Lebensstil: Einfach, geerdet, zäh</span><span class="intro-chevron">›</span></summary>
+    <p class="intro-text">Wer in den Abruzzen ein temperamentvolles «Mamma mia!» erwartet, wird überrascht. Die Menschen hier sind anders als das Klischee: ruhig, wortkarg, bodenständig. Das Regionalsprichwort bringt es auf den Punkt: «Forte e gentile» — stark und sanft. Kein Getue, keine Show. Die Abruzzen waren Jahrhunderte lang eine der ärmsten Regionen Italiens — hart umkämpftes Bergland, wenig Ackerbau möglich, viel Viehzucht. Das hat die Menschen geprägt. Viele Familien lebten noch bis weit ins 20. Jahrhundert als Wanderhirten (Transumanza), die mit ihren Herden im Frühling auf die Hochalmen zogen und im Herbst wieder ins Tal.</p>
+    <p class="intro-text" style="margin-top:8px">Heute sind Landwirtschaft und Schafzucht noch immer präsent — Safran, Linsen, Dinkel und Olivenöl aus der Region gelten als einige der besten Italiens. Arrosticini — winzige Lammspieße auf Holzkohle, ein Cent-Gericht der Hirten — sind zum Nationalgericht der Abruzzen geworden. Man isst sie im Stehen, man redet dabei nicht viel, und man braucht mindestens zwanzig davon. Das versteht hier jeder ohne Erklärung.</p>
+  </details>
+
+  <details class="intro-details">
+    <summary class="intro-summary"><span>🏛 Architektur: Mittelalter trifft Schiefer</span><span class="intro-chevron">›</span></summary>
+    <p class="intro-text">Die typischen Bergdörfer (Borghi) sitzen auf Felsvorsprüngen wie hingeworfene Steinwürfel — enge Gassen, Torbögen, Brunnen aus dem 13. Jahrhundert. Die Kirchen sind oft romanisch mit unfertig wirkenden Fassaden — kein Zufall: Erdbeben haben hier Generation für Generation Bauprojekte unterbrochen. Trabocchi sind ein einzigartiges Küstenpanorama: fragile Holzgerüste auf Stelzen, die ins Meer ragen — ursprünglich Fischfallen, heute Kultrestaurants. UNESCO-Kandidat. Kein anderes Land hat so etwas.</p>
+  </details>
+
+  <div class="intro-facts-grid">
+    <div class="intro-fact-card"><span class="ifc-icon">⛷</span><span class="ifc-text">Ski &amp; Strand am gleichen Tag — 45 Min. Distanz</span></div>
+    <div class="intro-fact-card"><span class="ifc-icon">🐺</span><span class="ifc-text">Abruzzenwolf &amp; Marsicabär — wild, nicht im Zoo</span></div>
+    <div class="intro-fact-card"><span class="ifc-icon">🎬</span><span class="ifc-text">Pacentro: Kulisse für Clooneys «The American»</span></div>
+    <div class="intro-fact-card"><span class="ifc-icon">🧪</span><span class="ifc-text">Teilchenlabor im Gran Sasso — Physik unterm Berg</span></div>
+    <div class="intro-fact-card"><span class="ifc-icon">🍬</span><span class="ifc-text">Confetti seit 1492 — älter als die USA</span></div>
+    <div class="intro-fact-card"><span class="ifc-icon">🪖</span><span class="ifc-text">Mussolini 1943 vom Gran Sasso befreit</span></div>
+  </div>
+</div>
+
+<!-- ══ OVERVIEW GRID ══════════════════════════════════════════════ -->
+<div class="overview">
+  <div class="overview-grid">
+    <a class="overview-btn" href="#day1">
+      <div class="overview-day">SA</div>
+      <div class="overview-date">25.7</div>
+      <div class="overview-title">Ankunft</div>
+    </a>
+    <a class="overview-btn" href="#day2">
+      <div class="overview-day">SO</div>
+      <div class="overview-date">26.7</div>
+      <div class="overview-title">Erkundung</div>
+    </a>
+    <a class="overview-btn" href="#day3">
+      <div class="overview-day">MO</div>
+      <div class="overview-date">27.7</div>
+      <div class="overview-title">Bergdörfer</div>
+    </a>
+    <a class="overview-btn" href="#day4">
+      <div class="overview-day">DI</div>
+      <div class="overview-date">28.7</div>
+      <div class="overview-title">Trabocchi</div>
+    </a>
+    <a class="overview-btn" href="#day5">
+      <div class="overview-day">MI</div>
+      <div class="overview-date">29.7</div>
+      <div class="overview-title">Scanno</div>
+    </a>
+    <a class="overview-btn" href="#day6">
+      <div class="overview-day">DO</div>
+      <div class="overview-date">30.7</div>
+      <div class="overview-title">Natur</div>
+    </a>
+    <a class="overview-btn" href="#day7">
+      <div class="overview-day">FR</div>
+      <div class="overview-date">31.7</div>
+      <div class="overview-title">Atri</div>
+    </a>
+  </div>
+</div>
+
+<!-- ══ TAG 1 ═══════════════════════════════════════════════════════ -->
+<section class="day-section" id="day1">
+  <div class="day-hero">
+    <div class="day-hero-bg" style="background:linear-gradient(170deg,#7a2e1e 0%,#b85a42 30%,#c8906a 55%,#c9a86c 75%,#6a5a3a 100%)"><img src="https://picsum.photos/seed/italian-villa-countryside/800/500" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="day-hero-overlay"></div>
+    <div class="day-hero-label">
+      <div class="day-number"><span class="day-num-badge">TAG 1</span><span class="day-date">Samstag, 25. Juli 2026</span></div>
+      <h2 class="day-title">Ankunft & erste Nacht</h2>
+    </div>
+  </div>
+  <div class="day-content">
+    <div class="section-label">Tagesplan</div>
+    <div class="activities">
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">15:00</span></div>
+        <div class="act-body">
+          <div class="act-title">Ankunft Villa Cusano</div>
+          <div class="act-detail">
+            Villa Cuasano 18, 65020 Abbateggio PE
+            <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Villa+Cuasano+18+65020+Abbateggio+Pescara+Italy" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen</a>
+          </div>
+        </div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">20:30</span></div>
+        <div class="act-body">
+          <div class="act-title">Abendessen Genziana Belvedere</div>
+          <div class="act-detail">
+            Via Belvedere 12, 65020 Roccamorice PE
+            <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Ristorante+Genziana+Belvedere+Via+Belvedere+12+Roccamorice" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-label">Links</div>
+    <div class="links">
+      <a class="link-card" href="https://www.emmavillas.com/en/abruzzo/villa-cusano-18" target="_blank">
+        <div class="link-icon">🏡</div>
+        <div class="link-text"><div class="link-label">Emma Villa Cusano</div><div class="link-url">emmavillas.com</div></div>
+        <div class="link-arrow">›</div>
+      </a>
+      <a class="link-card" href="https://www.genzianabelvedere.com/ristorante" target="_blank">
+        <div class="link-icon">🍽️</div>
+        <div class="link-text"><div class="link-label">Ristorante Genziana Belvedere</div><div class="link-url">genzianabelvedere.com</div></div>
+        <div class="link-arrow">›</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ TAG 2 ═══════════════════════════════════════════════════════ -->
+<section class="day-section" id="day2">
+  <div class="day-hero">
+    <div class="day-hero-bg" style="background:linear-gradient(175deg,#3a6349 0%,#5a8a62 25%,#7aaa7a 50%,#5a9a9a 75%,#2a6a8a 100%)"><img src="https://picsum.photos/seed/hilltop-village-italy/800/500" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="day-hero-overlay"></div>
+    <div class="day-hero-label">
+      <div class="day-number"><span class="day-num-badge">TAG 2</span><span class="day-date">Sonntag, 26. Juli 2026</span></div>
+      <h2 class="day-title">Erkundung Umgebung &amp; Abendessen in Villa</h2>
+    </div>
+  </div>
+  <div class="day-content">
+    <div class="section-label">Tagesplan</div>
+    <div class="free-cards">
+      <div class="free-card">
+        <div class="free-card-icon">🏊</div>
+        <div class="free-card-title">Pool & Relax</div>
+        <div class="free-card-desc">Morgen an der Villa, Sonne geniessen</div>
+      </div>
+      <div class="free-card">
+        <div class="free-card-icon">🛒</div>
+        <div class="free-card-title">Einkaufen</div>
+        <div class="free-card-desc">Zutaten für Abendessen besorgen</div>
+      </div>
+      <div class="free-card">
+        <div class="free-card-icon">🥂</div>
+        <div class="free-card-title">Apéro 18:00</div>
+        <div class="free-card-desc">Im Garten der Villa</div>
+      </div>
+      <div class="free-card">
+        <div class="free-card-icon">🍝</div>
+        <div class="free-card-title">Abendessen</div>
+        <div class="free-card-desc">Selbst kochen in der Villa</div>
+      </div>
+    </div>
+
+    <div class="section-label">Empfehlungen in der Nähe</div>
+    <div class="nearby-list">
+      <a class="nearby-item" href="https://www.google.com/maps/search/?api=1&query=Abbateggio+65020+Pescara+Italy" target="_blank">
+        <div class="nearby-dist">2 min</div>
+        <div>
+          <div class="nearby-name">Abbateggio</div>
+          <div class="nearby-desc">Mittelalterliches Bergdorf mit Panoramaterrasse — direkt bei der Villa</div>
+        </div>
+        <div class="nearby-arrow">›</div>
+      </a>
+      <a class="nearby-item" href="https://www.google.com/maps/search/?api=1&query=San+Valentino+in+Abruzzo+Citeriore+65020+Pescara" target="_blank">
+        <div class="nearby-dist">10 min</div>
+        <div>
+          <div class="nearby-name">San Valentino in Abruzzo Citeriore</div>
+          <div class="nearby-desc">Kleines malerisches Dorf mit Blick auf die Maiella</div>
+        </div>
+        <div class="nearby-arrow">›</div>
+      </a>
+      <a class="nearby-item" href="https://www.google.com/maps/search/?api=1&query=Roccamorice+65020+Pescara+Italy" target="_blank">
+        <div class="nearby-dist">10 min</div>
+        <div>
+          <div class="nearby-name">Roccamorice</div>
+          <div class="nearby-desc">Dorf mit Aussicht — Ausgangspunkt zum Eremo di San Bartolomeo</div>
+        </div>
+        <div class="nearby-arrow">›</div>
+      </a>
+      <a class="nearby-item" href="https://www.google.com/maps/search/?api=1&query=Eremo+San+Bartolomeo+in+Legio+Roccamorice" target="_blank">
+        <div class="nearby-dist">20 min</div>
+        <div>
+          <div class="nearby-name">Eremo di San Bartolomeo in Legio</div>
+          <div class="nearby-desc">Einzigartiges Felsenkloster aus dem 9. Jhd. — spektakuläre Lage in der Maiella-Schlucht</div>
+        </div>
+        <div class="nearby-arrow">›</div>
+      </a>
+      <a class="nearby-item" href="https://www.google.com/maps/search/?api=1&query=Caramanico+Terme+65023+Pescara+Italy" target="_blank">
+        <div class="nearby-dist">20 min</div>
+        <div>
+          <div class="nearby-name">Caramanico Terme</div>
+          <div class="nearby-desc">Kurort mit Thermalquellen im Nationalpark Maiella</div>
+        </div>
+        <div class="nearby-arrow">›</div>
+      </a>
+      <a class="nearby-item" href="https://www.google.com/maps/search/?api=1&query=Serramonacesca+65025+Pescara+Italy" target="_blank">
+        <div class="nearby-dist">25 min</div>
+        <div>
+          <div class="nearby-name">Serramonacesca & Badia Morronese</div>
+          <div class="nearby-desc">Romanische Abtei aus dem 10. Jhd., gegründet vom späteren Papst Coelestin V.</div>
+        </div>
+        <div class="nearby-arrow">›</div>
+      </a>
+    </div>
+    <div class="act-tip">💡 Tipp: Lokale Märkte für Olivenöl, Pecorino &amp; Montepulciano d'Abruzzo nicht vergessen!</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ TAG 3 ═══════════════════════════════════════════════════════ -->
+<section class="day-section" id="day3">
+  <div class="day-hero">
+    <div class="day-hero-bg" style="background:linear-gradient(175deg,#8aa0b0 0%,#5a7080 25%,#3a4a5a 50%,#2a3a4a 70%,#3a4a3a 100%)"><img src="https://picsum.photos/seed/mountain-fortress-cliff/800/500" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="day-hero-overlay"></div>
+    <div class="day-hero-label">
+      <div class="day-number"><span class="day-num-badge">TAG 3</span><span class="day-date">Montag, 27. Juli 2026</span></div>
+      <h2 class="day-title">Bergdörfer &amp; Festungen</h2>
+    </div>
+  </div>
+  <div class="day-content">
+    <div class="section-label">Tagesplan</div>
+    <div class="activities">
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">10:00</span><span class="act-time-end">11:00</span></div>
+        <div class="act-body"><div class="act-title drive">🚗 Fahrt nach Rocca Calascio</div></div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">11:00</span><span class="act-time-end">12:30</span></div>
+        <div class="act-body">
+          <div class="act-title">Rocca Calascio</div>
+          <div class="act-detail">V. della Torre, 67020 Calascio AQ<br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Rocca+Calascio+67020+Calascio+AQ+Italy" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen</a></div>
+          <div class="act-tip">🎬 Kulisse von Highlander, Ladyhawke &amp; zahlreichen Western</div>
+        </div>
+      </div>
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">12:30</span><span class="act-time-end">12:45</span></div>
+        <div class="act-body"><div class="act-title drive">🚗 Fahrt nach Santo Stefano di Sessanio</div></div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">13:00</span><span class="act-time-end">15:00</span></div>
+        <div class="act-body">
+          <div class="act-title">Santo Stefano di Sessanio</div>
+          <div class="act-detail">67020 Province of L'Aquila<br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Santo+Stefano+di+Sessanio+67020+AQ+Italy" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen</a></div>
+        </div>
+      </div>
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">15:00</span><span class="act-time-end">15:20</span></div>
+        <div class="act-body"><div class="act-title drive">🚗 Fahrt nach Castel del Monte</div></div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">15:30</span><span class="act-time-end">16:30</span></div>
+        <div class="act-body">
+          <div class="act-title">Castel del Monte</div>
+          <div class="act-detail">67023 Castel del Monte AQ<br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Castel+del+Monte+67023+AQ+Italy" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen</a></div>
+        </div>
+      </div>
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">16:30</span><span class="act-time-end">16:50</span></div>
+        <div class="act-body"><div class="act-title drive">🚗 Fahrt nach Ristoro Mucciante</div></div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">17:00</span><span class="act-time-end">19:00</span></div>
+        <div class="act-body">
+          <div class="act-title">Arrosticini selbst grillieren</div>
+          <div class="act-detail">Ristoro Mucciante · Loc. Fonte Vetica, 67023 Castel del Monte AQ<br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Ristoro+Mucciante+Fonte+Vetica+Castel+del+Monte+AQ" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen</a></div>
+          <div class="act-tip">🍖 Arrosticini = Hammelfleisch am Spieß über Holzkohle — DAS Gericht Abruzzos</div>
+        </div>
+      </div>
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">19:00</span><span class="act-time-end">20:30</span></div>
+        <div class="act-body"><div class="act-title drive">🚗 Rückfahrt zur Villa</div></div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">20:30</span><span class="act-time-end">open</span></div>
+        <div class="act-body"><div class="act-title">Schlummi &amp; Digestif im Garten</div></div>
+      </div>
+    </div>
+    <div class="section-label">Links</div>
+    <div class="links">
+      <a class="link-card" href="https://www.ristoromucciante.com" target="_blank">
+        <div class="link-icon">🍖</div>
+        <div class="link-text"><div class="link-label">Ristoro Mucciante</div><div class="link-url">ristoromucciante.com</div></div>
+        <div class="link-arrow">›</div>
+      </a>
+      <a class="link-card" href="https://www.youtube.com/watch?v=3_ZwRQJj2fM" target="_blank">
+        <div class="link-icon">▶️</div>
+        <div class="link-text"><div class="link-label">Stanley Tucci über Arrosticini</div><div class="link-url">YouTube</div></div>
+        <div class="link-arrow">›</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ TAG 4 ═══════════════════════════════════════════════════════ -->
+<section class="day-section" id="day4">
+  <div class="day-hero">
+    <div class="day-hero-bg" style="background:linear-gradient(175deg,#0a1a3a 0%,#0a3a6a 25%,#0a5a8a 50%,#1a8aaa 70%,#2aaaaa 100%)"><img src="https://picsum.photos/seed/adriatic-sea-coast-pier/800/500" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="day-hero-overlay"></div>
+    <div class="day-hero-label">
+      <div class="day-number"><span class="day-num-badge">TAG 4</span><span class="day-date">Dienstag, 28. Juli 2026</span></div>
+      <h2 class="day-title">Costa dei Trabocchi</h2>
+    </div>
+  </div>
+  <div class="day-content">
+    <div class="section-label">Tagesplan</div>
+    <div class="activities">
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">08:30</span><span class="act-time-end">09:00</span></div>
+        <div class="act-body"><div class="act-title drive">🚗 Fahrt nach Chieti</div><div class="act-detail">Parkhaus: Via Papa Giovanni XXIII, 66100 Chieti<br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Via+Papa+Giovanni+XXIII+66100+Chieti+Italy" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen</a></div></div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">09:00</span><span class="act-time-end">11:30</span></div>
+        <div class="act-body"><div class="act-title">Chieti &amp; Markt</div><div class="act-detail">Besichtigung Chieti + Markt an der Villa Comunale</div></div>
+      </div>
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">11:30</span><span class="act-time-end">12:00</span></div>
+        <div class="act-body"><div class="act-title drive">🚗 Rückfahrt zur Villa</div></div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">12:00</span><span class="act-time-end">14:30</span></div>
+        <div class="act-body"><div class="act-title">Mittagessen &amp; Pause in der Villa</div></div>
+      </div>
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">14:30</span><span class="act-time-end">15:15</span></div>
+        <div class="act-body"><div class="act-title drive">🚗 Fahrt nach Ortona</div></div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">15:15</span><span class="act-time-end">17:00</span></div>
+        <div class="act-body">
+          <div class="act-title">Ortona / Schwimmen im Meer</div>
+          <div class="act-detail">Ortona 66026 CH<br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Ortona+66026+CH+Italy" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen</a></div>
+        </div>
+      </div>
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">17:00</span><span class="act-time-end">17:15</span></div>
+        <div class="act-body"><div class="act-title drive">🚗 Fahrt nach Trabocco Turchino</div></div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">17:30</span><span class="act-time-end">19:30</span></div>
+        <div class="act-body">
+          <div class="act-title">Private Führung Trabocco Turchino</div>
+          <div class="act-detail">SS16 112, 66038 Marina di San Vito CH<br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Trabocco+Turchino+Marina+di+San+Vito+Chieti+Italy" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen</a></div>
+          <div class="act-tip">🎣 Trabocchi: historische Fischerkonstruktionen, heute Restaurants am Meer</div>
+        </div>
+      </div>
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">19:45</span><span class="act-time-end">19:50</span></div>
+        <div class="act-body"><div class="act-title drive">🚗 Fahrt nach Trabocco Sasso della Cajana</div></div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">20:00</span><span class="act-time-end">22:30</span></div>
+        <div class="act-body">
+          <div class="act-title">Abendessen Trabocco Sasso della Cajana</div>
+          <div class="act-detail">Contrada Vallevò 64, 66020 Rocca San Giovanni CH<br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Trabocco+Sasso+della+Cajana+Rocca+San+Giovanni+Chieti+Italy" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen</a></div>
+        </div>
+      </div>
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">22:30</span><span class="act-time-end">23:30</span></div>
+        <div class="act-body"><div class="act-title drive">🚗 Rückfahrt zur Villa</div></div>
+      </div>
+    </div>
+    <div class="section-label">Links</div>
+    <div class="links">
+      <a class="link-card" href="https://www.ilbosso.com/trabocco-turchino/" target="_blank">
+        <div class="link-icon">🎣</div>
+        <div class="link-text"><div class="link-label">Trabocco Turchino</div><div class="link-url">ilbosso.com</div></div>
+        <div class="link-arrow">›</div>
+      </a>
+      <a class="link-card" href="http://www.sassodellacajana.it/" target="_blank">
+        <div class="link-icon">🐟</div>
+        <div class="link-text"><div class="link-label">Trabocco Sasso della Cajana</div><div class="link-url">sassodellacajana.it</div></div>
+        <div class="link-arrow">›</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ TAG 5 ═══════════════════════════════════════════════════════ -->
+<section class="day-section" id="day5">
+  <div class="day-hero">
+    <div class="day-hero-bg" style="background:linear-gradient(175deg,#0a1a2a 0%,#0a2a4a 30%,#0a4a6a 55%,#2a6a5a 75%,#1a4a3a 100%)"><img src="https://picsum.photos/seed/alpine-lake-mountains/800/500" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="day-hero-overlay"></div>
+    <div class="day-hero-label">
+      <div class="day-number"><span class="day-num-badge">TAG 5</span><span class="day-date">Mittwoch, 29. Juli 2026</span></div>
+      <h2 class="day-title">Seen &amp; Süssigkeiten</h2>
+    </div>
+  </div>
+  <div class="day-content">
+    <div class="section-label">Tagesplan</div>
+    <div class="activities">
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">09:45</span><span class="act-time-end">10:30</span></div>
+        <div class="act-body">
+          <div class="act-title drive">🚗 Fahrt nach Pacentro</div>
+        </div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">10:30</span><span class="act-time-end">12:00</span></div>
+        <div class="act-body">
+          <div class="act-title">Besichtigung Pacentro</div>
+          <div class="act-detail">
+            Pacentro, 67030 Province of L'Aquila
+            <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Pacentro+67030+L%27Aquila+Italy" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen
+            </a>
+          </div>
+          <div class="act-tip">🎬 Drehort von George Clooneys «The American» (2010)</div>
+        </div>
+      </div>
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">12:00</span><span class="act-time-end">12:50</span></div>
+        <div class="act-body">
+          <div class="act-title drive">🚗 Fahrt nach Lago di Scanno</div>
+        </div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">13:00</span><span class="act-time-end">16:00</span></div>
+        <div class="act-body">
+          <div class="act-title">Lago di Scanno &amp; Stadt Scanno</div>
+          <div class="act-detail">
+            Lago di Scanno, Province of L'Aquila
+            <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Lago+di+Scanno+L%27Aquila+Italy" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen
+            </a>
+          </div>
+          <div class="act-tip">💙 Herzförmiger Bergsee auf 1000m — aus der Luft wie ein Herz</div>
+        </div>
+      </div>
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">16:00</span><span class="act-time-end">16:45</span></div>
+        <div class="act-body">
+          <div class="act-title drive">🚗 Fahrt nach Sulmona</div>
+        </div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">17:00</span><span class="act-time-end">19:30</span></div>
+        <div class="act-body">
+          <div class="act-title">Besichtigung Sulmona</div>
+          <div class="act-detail">
+            Sulmona, 67039 Province of L'Aquila
+            <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Sulmona+67039+L%27Aquila+Italy" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen
+            </a>
+          </div>
+          <div class="act-tip">🍬 Weltberühmt für Confetti (Zuckermandeln) — unbedingt mitnehmen!</div>
+        </div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">19:30</span><span class="act-time-end">22:00</span></div>
+        <div class="act-body">
+          <div class="act-title">Abendessen Il Vecchio Muro</div>
+          <div class="act-detail">
+            Via Manlio D'Eramo 20/B, 67039 Sulmona AQ
+            <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Ristorante+Il+Vecchio+Muro+Via+Manlio+D%27Eramo+20+Sulmona" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">22:00</span><span class="act-time-end">22:45</span></div>
+        <div class="act-body">
+          <div class="act-title drive">🚗 Rückfahrt zur Villa</div>
+        </div>
+      </div>
+    </div>
+    <div class="section-label">Links</div>
+    <div class="links">
+      <a class="link-card" href="https://ilvecchiomuro.it/" target="_blank">
+        <div class="link-icon">🍷</div>
+        <div class="link-text"><div class="link-label">Ristorante Il Vecchio Muro</div><div class="link-url">ilvecchiomuro.it</div></div>
+        <div class="link-arrow">›</div>
+      </a>
+      <a class="link-card" href="https://www.pelinostore.com/" target="_blank">
+        <div class="link-icon">🍬</div>
+        <div class="link-text"><div class="link-label">Pelino – Confetti Sulmona</div><div class="link-url">pelinostore.com</div></div>
+        <div class="link-arrow">›</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ TAG 6 ═══════════════════════════════════════════════════════ -->
+<section class="day-section" id="day6">
+  <div class="day-hero">
+    <div class="day-hero-bg" style="background:linear-gradient(175deg,#0a2a1a 0%,#1a4a2a 25%,#2a6a3a 50%,#4a8a5a 75%,#6aaa7a 100%)"><img src="https://picsum.photos/seed/gorge-forest-stream/800/500" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="day-hero-overlay"></div>
+    <div class="day-hero-label">
+      <div class="day-number"><span class="day-num-badge">TAG 6</span><span class="day-date">Donnerstag, 30. Juli 2026</span></div>
+      <h2 class="day-title">Natur, Wasserfall &amp; Adria</h2>
+    </div>
+  </div>
+  <div class="day-content">
+    <div class="section-label">Tagesplan</div>
+    <div class="activities">
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">09:30</span><span class="act-time-end">09:45</span></div>
+        <div class="act-body">
+          <div class="act-title drive">🚗 Fahrt nach Valle dell'Orfento</div>
+        </div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">10:00</span><span class="act-time-end">12:00</span></div>
+        <div class="act-body">
+          <div class="act-title">Spaziergang &amp; Wasserfall</div>
+          <div class="act-detail">
+            Le Scalelle, Contrada Santa Croce, 65023 Caramanico Terme PE
+            <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Valle+dell+Orfento+Caramanico+Terme+Pescara+Italy" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen
+            </a>
+          </div>
+          <div class="act-tip">🌿 Schlucht im Nationalpark Maiella — Wasserfall Sentiero delle Scalelle</div>
+        </div>
+      </div>
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">12:00</span><span class="act-time-end">12:15</span></div>
+        <div class="act-body">
+          <div class="act-title drive">🚗 Rückfahrt zur Villa</div>
+        </div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">12:30</span><span class="act-time-end">15:30</span></div>
+        <div class="act-body">
+          <div class="act-title">Mittagessen &amp; Pause in der Villa</div>
+          <div class="act-detail">Leichtes Lunch, Siesta, Pool</div>
+        </div>
+      </div>
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">15:30</span><span class="act-time-end">16:00</span></div>
+        <div class="act-body">
+          <div class="act-title drive">🚗 Fahrt nach Pescara</div>
+        </div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">16:00</span><span class="act-time-end">19:00</span></div>
+        <div class="act-body">
+          <div class="act-title">Besichtigung Pescara</div>
+          <div class="act-detail">
+            Corso Vittorio Emanuele II 273, 65122 Pescara PE
+            <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Corso+Vittorio+Emanuele+II+273+65122+Pescara+Italy" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">19:30</span><span class="act-time-end">22:00</span></div>
+        <div class="act-body">
+          <div class="act-title">Abendessen All'Amo</div>
+          <div class="act-detail">
+            Ristorante pesce All'Amo · V.le Primo Vere 65, 65129 Pescara PE
+            <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Ristorante+All%27Amo+Viale+Primo+Vere+65+Pescara" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">22:00</span><span class="act-time-end">22:30</span></div>
+        <div class="act-body">
+          <div class="act-title drive">🚗 Rückfahrt zur Villa</div>
+        </div>
+      </div>
+    </div>
+    <div class="section-label">Links</div>
+    <div class="links">
+      <a class="link-card" href="https://www.valledellorfento.info" target="_blank">
+        <div class="link-icon">🌿</div>
+        <div class="link-text"><div class="link-label">Valle dell'Orfento</div><div class="link-url">valledellorfento.info</div></div>
+        <div class="link-arrow">›</div>
+      </a>
+      <a class="link-card" href="https://www.thefork.com/restaurant/all-amo-r743996" target="_blank">
+        <div class="link-icon">🐟</div>
+        <div class="link-text"><div class="link-label">Ristorante All'Amo – Pescara</div><div class="link-url">thefork.com</div></div>
+        <div class="link-arrow">›</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ TAG 7 ═══════════════════════════════════════════════════════ -->
+<section class="day-section" id="day7">
+  <div class="day-hero">
+    <div class="day-hero-bg" style="background:linear-gradient(175deg,#1a0a0a 0%,#4a1a0a 25%,#8a4a1a 50%,#c0604a 70%,#c9a86c 100%)"><img src="https://picsum.photos/seed/golden-hour-terracotta/800/500" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="day-hero-overlay"></div>
+    <div class="day-hero-label">
+      <div class="day-number"><span class="day-num-badge">TAG 7</span><span class="day-date">Freitag, 31. Juli 2026</span></div>
+      <h2 class="day-title">Letzter Tag</h2>
+    </div>
+  </div>
+  <div class="day-content">
+    <div class="section-label">Tagesplan</div>
+    <div class="activities">
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">09:00</span><span class="act-time-end">12:00</span></div>
+        <div class="act-body">
+          <div class="act-title">Freies Programm</div>
+          <div class="act-detail">Pool, letzte Souvenirs, Relaxen in der Villa</div>
+        </div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">12:30</span><span class="act-time-end">14:30</span></div>
+        <div class="act-body">
+          <div class="act-title">Mittagessen in der Villa</div>
+          <div class="act-detail">Gemeinsames Lunch — alles aufbrauchen 🙂</div>
+        </div>
+      </div>
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">14:30</span><span class="act-time-end">15:15</span></div>
+        <div class="act-body">
+          <div class="act-title drive">🚗 Fahrt nach Atri</div>
+        </div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">15:30</span><span class="act-time-end">17:30</span></div>
+        <div class="act-body">
+          <div class="act-title">Besichtigung Atri</div>
+          <div class="act-detail">
+            Atri, Province of Teramo
+            <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Atri+64032+Teramo+Italy" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">17:30</span><span class="act-time-end">18:00</span></div>
+        <div class="act-body">
+          <div class="act-title drive">🚗 Fahrt nach Poggio delle Rose</div>
+        </div>
+      </div>
+      <div class="activity">
+        <div class="act-time"><span class="act-time-start">18:00</span><span class="act-time-end">23:00</span></div>
+        <div class="act-body">
+          <div class="act-title">Abendessen Poggio delle Rose — Abschlussabend</div>
+          <div class="act-detail">
+            64037 Poggio delle Rose, Province of Teramo
+            <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Poggio+delle+Rose+64037+Teramo+Italy" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="activity drive-row">
+        <div class="act-time"><span class="act-time-start">23:00</span><span class="act-time-end">00:20</span></div>
+        <div class="act-body">
+          <div class="act-title drive">🚗 Rückfahrt zur Villa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CLOSING ════════════════════════════════════════════════════ -->
+<section class="closing">
+  <div class="closing-bg" style="background:linear-gradient(175deg,#0a0a1a 0%,#1a1a3a 30%,#3a1a2a 60%,#8a2a1a 80%,#c0604a 100%)"></div>
+  <div class="closing-overlay"></div>
+  <div class="closing-content">
+    <div class="closing-eyebrow">1. August 2026 · Check-Out</div>
+    <h2 class="closing-title">Arrivederci,<br>Abruzzo!</h2>
+    <p class="closing-sub">Eine Woche Bergdörfer, Trabocchi, Seen und unvergessliche Momente.</p>
+    <div class="closing-chips">
+      <span class="closing-chip">Villa Cusano</span>
+      <span class="closing-chip">Rocca Calascio</span>
+      <span class="closing-chip">Trabocchi-Küste</span>
+      <span class="closing-chip">Lago Scanno</span>
+      <span class="closing-chip">Arrosticini</span>
+      <span class="closing-chip">Sulmona</span>
+    </div>
+  </div>
+</section>
+
+<script></script>
+</body>
+</html>
