@@ -51,6 +51,14 @@
   .day-date{font-size:12px;color:var(--gold);font-weight:400;letter-spacing:0.5px}
   .day-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(22px,6vw,32px);font-weight:700;color:#fff;line-height:1.15}
 
+  /* PFLICHT / FREIWILLIG BADGES */
+  .legend-bar{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:12px 16px;background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .legend-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+  .pflicht-badge{display:inline-block;background:var(--terra);color:#fff;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:3px;margin-left:8px;vertical-align:middle;white-space:nowrap}
+  .optional-badge{display:inline-block;background:transparent;color:var(--gold);border:1px solid rgba(201,168,76,0.45);font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:3px;margin-left:8px;vertical-align:middle;white-space:nowrap}
+  .free-card.pflicht{border:1px solid rgba(192,96,74,0.4);background:rgba(192,96,74,0.08)}
+  .free-card.optional{opacity:0.8}
+
   /* CONTENT */
   .day-content{padding:20px 16px 0}
   .activities{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
@@ -180,6 +188,12 @@
   </div>
 </section>
 
+<!-- ══ LEGENDE ════════════════════════════════════════════════════ -->
+<div class="legend-bar">
+  <div class="legend-item"><span class="pflicht-badge">Fix</span><span>Reservation / alle dabei</span></div>
+  <div class="legend-item"><span class="optional-badge">Freiwillig</span><span>Individuell &amp; optional</span></div>
+</div>
+
 <!-- ══ INTRO ════════════════════════════════════════════════════════ -->
 <div class="intro-block">
   <div class="intro-title">Über die Abruzzen</div>
@@ -295,7 +309,7 @@
       <div class="activity">
         <div class="act-time"><span class="act-time-start">20:30</span></div>
         <div class="act-body">
-          <div class="act-title">Abendessen Genziana Belvedere</div>
+          <div class="act-title">Abendessen Genziana Belvedere<span class="pflicht-badge">Fix</span></div>
           <div class="act-detail">
             Via Belvedere 12, 65020 Roccamorice PE
             <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Ristorante+Genziana+Belvedere+Via+Belvedere+12+Roccamorice" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen</a>
@@ -347,24 +361,24 @@
   <div class="day-content">
     <div class="section-label">Tagesplan</div>
     <div class="free-cards">
-      <div class="free-card">
+      <div class="free-card optional">
         <div class="free-card-icon">🏊</div>
-        <div class="free-card-title">Pool & Relax</div>
+        <div class="free-card-title">Pool & Relax<span class="optional-badge">Freiwillig</span></div>
         <div class="free-card-desc">Morgen an der Villa, Sonne geniessen</div>
       </div>
-      <div class="free-card">
+      <div class="free-card optional">
         <div class="free-card-icon">🛒</div>
-        <div class="free-card-title">Einkaufen</div>
+        <div class="free-card-title">Einkaufen<span class="optional-badge">Freiwillig</span></div>
         <div class="free-card-desc">Zutaten für Abendessen besorgen</div>
       </div>
-      <div class="free-card">
+      <div class="free-card optional">
         <div class="free-card-icon">🥂</div>
-        <div class="free-card-title">Apéro 18:00</div>
+        <div class="free-card-title">Apéro 18:00<span class="optional-badge">Freiwillig</span></div>
         <div class="free-card-desc">Im Garten der Villa</div>
       </div>
-      <div class="free-card">
+      <div class="free-card pflicht">
         <div class="free-card-icon">🍝</div>
-        <div class="free-card-title">Abendessen</div>
+        <div class="free-card-title">Abendessen<span class="pflicht-badge">Fix</span></div>
         <div class="free-card-desc">Selbst kochen in der Villa</div>
       </div>
     </div>
@@ -446,7 +460,7 @@
       <div class="activity">
         <div class="act-time"><span class="act-time-start">11:00</span><span class="act-time-end">12:30</span></div>
         <div class="act-body">
-          <div class="act-title">Rocca Calascio</div>
+          <div class="act-title">Rocca Calascio<span class="optional-badge">Freiwillig</span></div>
           <div class="act-detail">V. della Torre, 67020 Calascio AQ<br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Rocca+Calascio+67020+Calascio+AQ+Italy" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen</a></div>
           <div class="act-tip">🎬 Kulisse von Highlander, Ladyhawke &amp; zahlreichen Western</div>
         </div>
@@ -458,7 +472,7 @@
       <div class="activity">
         <div class="act-time"><span class="act-time-start">13:00</span><span class="act-time-end">15:00</span></div>
         <div class="act-body">
-          <div class="act-title">Santo Stefano di Sessanio</div>
+          <div class="act-title">Santo Stefano di Sessanio<span class="optional-badge">Freiwillig</span></div>
           <div class="act-detail">67020 Province of L'Aquila<br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Santo+Stefano+di+Sessanio+67020+AQ+Italy" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen</a></div>
         </div>
       </div>
@@ -469,7 +483,7 @@
       <div class="activity">
         <div class="act-time"><span class="act-time-start">15:30</span><span class="act-time-end">16:30</span></div>
         <div class="act-body">
-          <div class="act-title">Castel del Monte</div>
+          <div class="act-title">Castel del Monte<span class="optional-badge">Freiwillig</span></div>
           <div class="act-detail">67023 Castel del Monte AQ<br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Castel+del+Monte+67023+AQ+Italy" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen</a></div>
         </div>
       </div>
@@ -480,7 +494,7 @@
       <div class="activity">
         <div class="act-time"><span class="act-time-start">17:00</span><span class="act-time-end">19:00</span></div>
         <div class="act-body">
-          <div class="act-title">Arrosticini selbst grillieren</div>
+          <div class="act-title">Arrosticini selbst grillieren<span class="pflicht-badge">Fix</span></div>
           <div class="act-detail">Ristoro Mucciante · Loc. Fonte Vetica, 67023 Castel del Monte AQ<br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Ristoro+Mucciante+Fonte+Vetica+Castel+del+Monte+AQ" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen</a></div>
           <div class="act-tip">🍖 Arrosticini = Hammelfleisch am Spieß über Holzkohle — DAS Gericht Abruzzos</div>
         </div>
@@ -491,7 +505,7 @@
       </div>
       <div class="activity">
         <div class="act-time"><span class="act-time-start">20:30</span><span class="act-time-end">open</span></div>
-        <div class="act-body"><div class="act-title">Schlummi &amp; Digestif im Garten</div></div>
+        <div class="act-body"><div class="act-title">Schlummi &amp; Digestif im Garten<span class="optional-badge">Freiwillig</span></div></div>
       </div>
     </div>
     <div class="section-label">Links</div>
@@ -531,7 +545,7 @@
       </div>
       <div class="activity">
         <div class="act-time"><span class="act-time-start">09:00</span><span class="act-time-end">11:30</span></div>
-        <div class="act-body"><div class="act-title">Chieti &amp; Markt</div><div class="act-detail">Besichtigung Chieti + Markt an der Villa Comunale</div></div>
+        <div class="act-body"><div class="act-title">Chieti &amp; Markt<span class="optional-badge">Freiwillig</span></div><div class="act-detail">Besichtigung Chieti + Markt an der Villa Comunale</div></div>
       </div>
       <div class="activity drive-row">
         <div class="act-time"><span class="act-time-start">11:30</span><span class="act-time-end">12:00</span></div>
@@ -539,7 +553,7 @@
       </div>
       <div class="activity">
         <div class="act-time"><span class="act-time-start">12:00</span><span class="act-time-end">14:30</span></div>
-        <div class="act-body"><div class="act-title">Mittagessen &amp; Pause in der Villa</div></div>
+        <div class="act-body"><div class="act-title">Mittagessen &amp; Pause in der Villa<span class="optional-badge">Freiwillig</span></div></div>
       </div>
       <div class="activity drive-row">
         <div class="act-time"><span class="act-time-start">14:30</span><span class="act-time-end">15:15</span></div>
@@ -548,7 +562,7 @@
       <div class="activity">
         <div class="act-time"><span class="act-time-start">15:15</span><span class="act-time-end">17:00</span></div>
         <div class="act-body">
-          <div class="act-title">Ortona / Schwimmen im Meer</div>
+          <div class="act-title">Ortona / Schwimmen im Meer<span class="optional-badge">Freiwillig</span></div>
           <div class="act-detail">Ortona 66026 CH<br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Ortona+66026+CH+Italy" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen</a></div>
         </div>
       </div>
@@ -559,7 +573,7 @@
       <div class="activity">
         <div class="act-time"><span class="act-time-start">17:30</span><span class="act-time-end">19:30</span></div>
         <div class="act-body">
-          <div class="act-title">Private Führung Trabocco Turchino</div>
+          <div class="act-title">Private Führung Trabocco Turchino<span class="pflicht-badge">Fix</span></div>
           <div class="act-detail">SS16 112, 66038 Marina di San Vito CH<br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Trabocco+Turchino+Marina+di+San+Vito+Chieti+Italy" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen</a></div>
           <div class="act-tip">🎣 Trabocchi: historische Fischerkonstruktionen, heute Restaurants am Meer</div>
         </div>
@@ -571,7 +585,7 @@
       <div class="activity">
         <div class="act-time"><span class="act-time-start">20:00</span><span class="act-time-end">22:30</span></div>
         <div class="act-body">
-          <div class="act-title">Abendessen Trabocco Sasso della Cajana</div>
+          <div class="act-title">Abendessen Trabocco Sasso della Cajana<span class="pflicht-badge">Fix</span></div>
           <div class="act-detail">Contrada Vallevò 64, 66020 Rocca San Giovanni CH<br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Trabocco+Sasso+della+Cajana+Rocca+San+Giovanni+Chieti+Italy" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Route in Maps öffnen</a></div>
         </div>
       </div>
@@ -620,7 +634,7 @@
       <div class="activity">
         <div class="act-time"><span class="act-time-start">10:30</span><span class="act-time-end">12:00</span></div>
         <div class="act-body">
-          <div class="act-title">Besichtigung Pacentro</div>
+          <div class="act-title">Besichtigung Pacentro<span class="optional-badge">Freiwillig</span></div>
           <div class="act-detail">
             Pacentro, 67030 Province of L'Aquila
             <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Pacentro+67030+L%27Aquila+Italy" target="_blank">
@@ -639,7 +653,7 @@
       <div class="activity">
         <div class="act-time"><span class="act-time-start">13:00</span><span class="act-time-end">16:00</span></div>
         <div class="act-body">
-          <div class="act-title">Lago di Scanno &amp; Stadt Scanno</div>
+          <div class="act-title">Lago di Scanno &amp; Stadt Scanno<span class="optional-badge">Freiwillig</span></div>
           <div class="act-detail">
             Lago di Scanno, Province of L'Aquila
             <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Lago+di+Scanno+L%27Aquila+Italy" target="_blank">
@@ -658,7 +672,7 @@
       <div class="activity">
         <div class="act-time"><span class="act-time-start">17:00</span><span class="act-time-end">19:30</span></div>
         <div class="act-body">
-          <div class="act-title">Besichtigung Sulmona</div>
+          <div class="act-title">Besichtigung Sulmona<span class="optional-badge">Freiwillig</span></div>
           <div class="act-detail">
             Sulmona, 67039 Province of L'Aquila
             <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Sulmona+67039+L%27Aquila+Italy" target="_blank">
@@ -671,7 +685,7 @@
       <div class="activity">
         <div class="act-time"><span class="act-time-start">19:30</span><span class="act-time-end">22:00</span></div>
         <div class="act-body">
-          <div class="act-title">Abendessen Il Vecchio Muro</div>
+          <div class="act-title">Abendessen Il Vecchio Muro<span class="pflicht-badge">Fix</span></div>
           <div class="act-detail">
             Via Manlio D'Eramo 20/B, 67039 Sulmona AQ
             <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Ristorante+Il+Vecchio+Muro+Via+Manlio+D%27Eramo+20+Sulmona" target="_blank">
@@ -727,7 +741,7 @@
       <div class="activity">
         <div class="act-time"><span class="act-time-start">10:00</span><span class="act-time-end">12:00</span></div>
         <div class="act-body">
-          <div class="act-title">Spaziergang &amp; Wasserfall</div>
+          <div class="act-title">Spaziergang &amp; Wasserfall<span class="optional-badge">Freiwillig</span></div>
           <div class="act-detail">
             Le Scalelle, Contrada Santa Croce, 65023 Caramanico Terme PE
             <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Valle+dell+Orfento+Caramanico+Terme+Pescara+Italy" target="_blank">
@@ -746,7 +760,7 @@
       <div class="activity">
         <div class="act-time"><span class="act-time-start">12:30</span><span class="act-time-end">15:30</span></div>
         <div class="act-body">
-          <div class="act-title">Mittagessen &amp; Pause in der Villa</div>
+          <div class="act-title">Mittagessen &amp; Pause in der Villa<span class="optional-badge">Freiwillig</span></div>
           <div class="act-detail">Leichtes Lunch, Siesta, Pool</div>
         </div>
       </div>
@@ -759,7 +773,7 @@
       <div class="activity">
         <div class="act-time"><span class="act-time-start">16:00</span><span class="act-time-end">19:00</span></div>
         <div class="act-body">
-          <div class="act-title">Besichtigung Pescara</div>
+          <div class="act-title">Besichtigung Pescara<span class="optional-badge">Freiwillig</span></div>
           <div class="act-detail">
             Corso Vittorio Emanuele II 273, 65122 Pescara PE
             <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Corso+Vittorio+Emanuele+II+273+65122+Pescara+Italy" target="_blank">
@@ -771,7 +785,7 @@
       <div class="activity">
         <div class="act-time"><span class="act-time-start">19:30</span><span class="act-time-end">22:00</span></div>
         <div class="act-body">
-          <div class="act-title">Abendessen All'Amo</div>
+          <div class="act-title">Abendessen All'Amo<span class="pflicht-badge">Fix</span></div>
           <div class="act-detail">
             Ristorante pesce All'Amo · V.le Primo Vere 65, 65129 Pescara PE
             <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Ristorante+All%27Amo+Viale+Primo+Vere+65+Pescara" target="_blank">
@@ -821,14 +835,14 @@
       <div class="activity">
         <div class="act-time"><span class="act-time-start">09:00</span><span class="act-time-end">12:00</span></div>
         <div class="act-body">
-          <div class="act-title">Freies Programm</div>
+          <div class="act-title">Freies Programm<span class="optional-badge">Freiwillig</span></div>
           <div class="act-detail">Pool, letzte Souvenirs, Relaxen in der Villa</div>
         </div>
       </div>
       <div class="activity">
         <div class="act-time"><span class="act-time-start">12:30</span><span class="act-time-end">14:30</span></div>
         <div class="act-body">
-          <div class="act-title">Mittagessen in der Villa</div>
+          <div class="act-title">Mittagessen in der Villa<span class="optional-badge">Freiwillig</span></div>
           <div class="act-detail">Gemeinsames Lunch — alles aufbrauchen 🙂</div>
         </div>
       </div>
@@ -841,7 +855,7 @@
       <div class="activity">
         <div class="act-time"><span class="act-time-start">15:30</span><span class="act-time-end">17:30</span></div>
         <div class="act-body">
-          <div class="act-title">Besichtigung Atri</div>
+          <div class="act-title">Besichtigung Atri<span class="optional-badge">Freiwillig</span></div>
           <div class="act-detail">
             Atri, Province of Teramo
             <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Atri+64032+Teramo+Italy" target="_blank">
@@ -859,7 +873,7 @@
       <div class="activity">
         <div class="act-time"><span class="act-time-start">18:00</span><span class="act-time-end">23:00</span></div>
         <div class="act-body">
-          <div class="act-title">Abendessen Poggio delle Rose — Abschlussabend</div>
+          <div class="act-title">Abendessen Poggio delle Rose — Abschlussabend<span class="pflicht-badge">Fix</span></div>
           <div class="act-detail">
             64037 Poggio delle Rose, Province of Teramo
             <br><a class="maps-link" href="https://www.google.com/maps/search/?api=1&query=Poggio+delle+Rose+64037+Teramo+Italy" target="_blank">
